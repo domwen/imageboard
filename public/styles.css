@@ -1,0 +1,499 @@
+/* html, body */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    min-height: 100.1%;
+}
+
+/* default */
+* {
+    padding: 0px;
+    margin: 0px;
+    text-align: left;
+    font-family: Arial, Tahoma, Verdana;
+    font-size: 100%;
+    font-weight: 300;
+    color: #000;
+    text-decoration: none;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    transition: color 500ms;
+}
+
+a:hover {
+    color: #fc4f59;
+}
+
+b,
+strong {
+    font-weight: 600;
+}
+
+img {
+    border: 0px;
+}
+
+h1,
+h2 {
+    display: table;
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+    border-bottom: 10px solid #fc4f59;
+    margin-bottom: 40px !important;
+}
+
+h1.centered,
+h2 {
+    margin: auto;
+}
+
+.left h2,
+.right h2,
+.ce-textpic h2 {
+    margin: inherit;
+    margin-left: 0;
+}
+
+h3 {
+    font-size: 1.4em;
+    font-weight: bold;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.download h3 {
+    font-size: 2em;
+}
+
+h4 {
+    display: table;
+    color: #fff;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 10px solid #fff;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+h5 {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+h6 {
+    color: #fff;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+p {
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+p a {
+    border-bottom: 2px solid #fc4f59;
+}
+
+a span {
+    display: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.btn {
+    float: left;
+    color: #000;
+    font-size: 0.9em;
+    background: none;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px 15px 8px 15px;
+    border: 1px solid #000;
+    margin: 0 20px 20px 0;
+    transition: all 500ms;
+}
+
+.btn:hover {
+    color: #fff;
+    border: 1px solid #fc4f59;
+    background: #fc4f59;
+}
+
+.btn.btn_highlight {
+    float: none;
+    margin: auto;
+    display: table;
+    color: #fff;
+    font-size: 0.9em;
+    background: #fc4f59;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px 15px 8px 15px;
+    border: 1px solid #fc4f59;
+    transition: all 500ms;
+}
+
+.btn.btn_highlight:hover {
+    color: #fc4f59;
+    background: none;
+}
+
+.btn_back {
+    display: inline !important;
+    margin: inherit !important;
+}
+
+iframe {
+    margin-bottom: 40px;
+}
+
+.centered,
+.centered * {
+    text-align: center;
+}
+
+#standortlayer {
+    background: url('../Images/alpha.png');
+}
+
+.map_list {
+    background-image: url('../Images/map.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 26px 26px;
+    padding: 4px 0 10px 36px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.svg .map_list {
+    background-image: url('../Images/map.svg');
+}
+
+.map_list.hell {
+    background-image: url('../Images/map-hell.png');
+}
+
+.svg .map_list.hell {
+    background-image: url('../Images/map-hell.svg');
+}
+
+.map_list.projectspaces {
+    background-image: url('../Images/map-projectspaces.png');
+}
+
+.svg .map_list.projectspaces {
+    background-image: url('../Images/map-projectspaces.svg');
+}
+
+.map_list.privatecollections {
+    background-image: url('../Images/map-privatecollections.png');
+}
+
+.svg .map_list.privatecollections {
+    background-image: url('../Images/map-privatecollections.svg');
+}
+
+.map_list.performances {
+    background-image: url('../Images/map-performances.png');
+}
+
+.svg .map_list.performances {
+    background-image: url('../Images/map-performances.svg');
+}
+
+.map_list.artistfilms {
+    background-image: url('../Images/map-artistfilms.png');
+}
+
+.svg .map_list.artistfilms {
+    background-image: url('../Images/map-artistfilms.svg');
+}
+
+.map_list.exhibitions {
+    background-image: url('../Images/map-exhibitions.png');
+}
+
+.svg .map_list.exhibitions {
+    background-image: url('../Images/map-exhibitions.svg');
+}
+
+.map_list.fairs {
+    background-image: url('../Images/map-fairs.png');
+}
+
+.svg .map_list.fairs {
+    background-image: url('../Images/map-fairs.svg');
+}
+
+.image-caption {
+    display: block;
+    font-size: 0.8em;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.ce-gallery figure.image {
+    margin-bottom: 20px;
+}
+
+.map_more_link {
+    display: none !important;
+}
+
+#uid7 .map_more_link {
+    display: table !important;
+}
+
+@media screen and (max-width: 1200px) {
+    * {
+        max-width: 100%;
+        height: auto;
+    }
+
+    #ausstellungsorte * {
+        max-width: none;
+    }
+
+    .inner {
+        width: 90%;
+        padding: 0 5% 0 5%;
+    }
+
+    #id_header #id_meta {
+        right: 5%;
+    }
+
+    .dates ul {
+        border: none;
+        border-top: 1px solid #000 !important;
+    }
+
+    .dates ul li {
+        display: block;
+        width: 100% !important;
+        border: 1px solid #000;
+        border-top: none;
+    }
+
+    .bx-wrapper {
+        margin-bottom: 10px;
+    }
+
+    .termine,
+    .image_gallery .image {
+        height: 280px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .module {
+        padding: 20px 0 20px 0;
+    }
+
+    #id_header #id_ci a {
+        width: 280px;
+        height: 75px;
+    }
+
+    #id_slider {
+        margin-bottom: 30px;
+    }
+
+    #id_slider #id_stoerer_wrapper {
+        height: 400px;
+        margin-left: -500px;
+    }
+
+    #id_stoerer {
+        width: 300px !important;
+        height: 300px !important;
+    }
+
+    #id_stoerer_inner {
+        padding: 84px 0 0 40px;
+    }
+
+    h3 {
+        font-size: 1em;
+    }
+
+    .inner.inner_reduced,
+    .inner.inner_reduced.inner_reduced_padding {
+        width: 90%;
+    }
+
+    .inner_slide .slide_content {
+        max-width: 70%;
+        padding-top: 180px;
+    }
+
+    .inner_slide .slide_content h3,
+    .inner_slide .slide_content p {
+        font-size: 1.4em;
+    }
+
+    .download_content {
+        width: 65% !important;
+    }
+
+    .termine {
+        width: 50%;
+    }
+
+    .termine,
+    .image_gallery .image {
+        height: 220px;
+    }
+
+    #id_footer_bottom img {
+        margin-bottom: 40px;
+    }
+
+    .dropdown-wrapper {
+        width: 100% !important;
+        float: none;
+    }
+
+    .dropdown-wrapper * {
+        text-align: center;
+    }
+
+    .filter.set-filter {
+        width: 100% !important;
+        float: none;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .only-mobile {
+        display: block !important;
+    }
+
+    .not-mobile {
+        display: none;
+    }
+
+    h1,
+    h2 {
+        font-size: 1.2em;
+    }
+
+    #id_header #id_ci a {
+        width: 200px;
+        height: 53px;
+    }
+
+    #id_slider {
+        height: auto !important;
+    }
+
+    #id_stoerer_wrapper {
+        display: none;
+    }
+
+    .download_content {
+        width: 90% !important;
+        left: 5%;
+    }
+
+    .download_inner {
+        padding-top: 100%;
+    }
+
+    #id_merkliste {
+        margin-top: -20px;
+    }
+
+    #id_menu_btn {
+        margin-top: 20px;
+    }
+
+    #id_slider .inner {
+        display: none !important;
+    }
+
+    .kalender {
+        height: auto;
+    }
+
+    .kalender_nav_row_01 .dropdown-wrapper {
+        width: 33.33%;
+    }
+
+    .kalender_nav_row_02 {
+        display: none !important;
+    }
+
+    .kalender_nav_row_03 a {
+        width: 49%;
+    }
+
+    .left,
+    .right,
+    .news,
+    .kalender_nav_row,
+    .kalender-gallery .kalender,
+    .kalender .image,
+    .kalender .content,
+    #id_footer .footer_row,
+    .image_gallery .image,
+    .ce-textpic .ce-gallery,
+    .ce-textpic .ce-bodytext {
+        clear: both;
+        float: none !important;
+        width: 100% !important;
+        margin: 0 0 40px 0 !important;
+    }
+
+    .image_gallery .image {
+        height: auto !important;
+    }
+
+    .image_gallery .image .image_inner {
+        padding: 0;
+    }
+
+    .left img,
+    .right img,
+    .news img,
+    .kalender .image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .inner_slide .slide_content {
+        max-width: 90%;
+        padding-top: 40px;
+    }
+
+    .inner_slide .slide_content h3,
+    .inner_slide .slide_content p {
+        font-size: 1.8em;
+    }
+
+    .termine {
+        width: 100%;
+        float: none;
+    }
+
+    .footer_row {
+        clear: both;
+    }
+}
