@@ -71,38 +71,50 @@ h4 {
 }
 
 #main {
-    display: flex;
+    padding: 0;
+    margin: 0;
     width: 100%;
-    flex-direction: column;
+    display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 #gridContainer {
-    display: grid;
     align-items: center;
-    justify-content: stretch;
-    text-align: center;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 225px 225px 225px 225px;
+    grid-template-rows: 225px 225px;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
 }
 
 #imgbox {
-    margin-top: 40px;
-    display: grid;
-    grid-template-columns: 200px 200px 200px;
-    grid-auto-rows: 240px 240px;
-    grid-column-gap: 20px;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
 }
 
-.btn {
-    float: left;
+input {
     color: #000;
     font-size: 0.9em;
     background: none;
     text-transform: uppercase;
     text-align: center;
-    padding: 10px 15px 8px 15px;
+    padding: 5px 10px 5px 5px;
     border: 1px solid #000;
-    margin: 0 20px 20px 0;
+    margin: 0 10px 10px 0;
+}
+.btn {
+    color: #000;
+    font-size: 0.9em;
+    background: none;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px 10px 5px 5px;
+    border: 1px solid #000;
+    margin: 0 10px 10px 0;
     transition: all 500ms;
 }
 

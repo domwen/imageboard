@@ -6,6 +6,7 @@ const s3 = require('./s3.js');
 var multer = require('multer');
 var uidSafe = require('uid-safe');
 var path = require('path');
+const config = require('./config.json');
 
 var diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {

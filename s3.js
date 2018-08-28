@@ -1,5 +1,6 @@
 const knox = require('knox');
 const fs = require('fs');
+let s3Bucket = require('./config.json');
 
 let secrets;
 if (process.env.NODE_ENV == 'production') {
@@ -11,7 +12,7 @@ if (process.env.NODE_ENV == 'production') {
 const client = knox.createClient({
     key: secrets.AWS_KEY,
     secret: secrets.AWS_SECRET,
-    bucket: 'thenameofmybucket'
+    bucket: 'first-class-bucket'
 });
 
 exports.upload = function(req, res, next) {

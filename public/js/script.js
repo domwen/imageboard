@@ -29,8 +29,9 @@
                 formData.append('username', this.form.username);
                 console.log('formData ', formData);
 
-                axios.post('/upload', formData).then(function(resp) {
-                    console.log('resp in POST / upload', resp);
+                axios.post('/upload', formData).then(function(res) {
+                    console.log('resp in POST / upload', res);
+                    app.images.unshift(res.data.image);
                 });
             }
         }

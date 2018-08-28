@@ -5,22 +5,19 @@
         <title>Imageboard</title>
 </head>
 <body>
-    <h2>fgsrgfsgv</h2>
+
 
     <div id="main">
-
-
-
         <form method="POST" class="form">
 
             <h2>Upload Your File</h2>
             <input v-model="form.title" type="text" class="name" name="title" placeholder="Title">
             <input v-model="form.description" type="text"  class="name" name="description" placeholder="Description">
             <input v-model="form.username" type="text"  class="name" name="username" placeholder="Username">
-            <input type="file" accept="image/*">
-            <button v-on:click ="uploadFile">Upload</button>
+            <input type="file" accept="image/*" class="btn">
+            <button v-on:click ="uploadFile" class="btn">Upload</button>
 
-        </from>
+        </form>
 
         <div id="gridContainer">
             <div id="imgbox" v-if="images.length > 0" v-for="image in images">
