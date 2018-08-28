@@ -1,6 +1,7 @@
 const spicedPg = require('spiced-pg');
+const { pgUser, pgPw } = require('./secrets.json');
 
-var dbUrl = 'postgres:postgres:postgres@localhost:5432/imageboard';
+var dbUrl = `postgres:${pgUser}:${pgPw}@localhost:5432/imageboard`;
 
 const db = spicedPg(dbUrl);
 
