@@ -1,6 +1,6 @@
 (function() {
     var app = new Vue({
-        el: '.main',
+        el: '#main',
         data: {
             images: [],
             form: {
