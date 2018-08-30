@@ -20,12 +20,6 @@ a {
     transition: color 500ms;
 }
 
-.img {
-    width: 225px;
-    height: 225px;
-    border: 1px dashed;
-    border-radius: 50%;
-}
 a:hover {
     color: #fc4f59;
 }
@@ -71,8 +65,8 @@ h4 {
 }
 
 #main {
-    padding: 0;
-    margin: 0;
+    padding: 10px;
+    margin: 10px;
     width: 100%;
     display: flex;
     align-items: center;
@@ -86,28 +80,51 @@ h4 {
     grid-template-columns: 225px 225px 225px 225px;
     grid-template-rows: 225px 225px;
     grid-column-gap: 25px;
-    grid-row-gap: 25px;
+    grid-row-gap: 50px;
 }
 
 #imgbox {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px;
+
+    margin-top: 10px;
+}
+
+.img {
+    width: 225px;
+    height: 225px;
+    border: 1px solid;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.img:hover {
+    border-color: #fc4f59;
+}
+
+.modalImg {
+    max-width: 400px;
+    border: 1px solid;
+}
+
+.imgTitle {
+    font-style: italic;
 }
 
 input {
     color: #000;
     font-size: 0.9em;
     background: none;
-    text-transform: uppercase;
     text-align: center;
     padding: 5px 10px 5px 5px;
     border: 1px solid #000;
     margin: 0 10px 10px 0;
+    transition: all 500ms;
 }
 .btn {
     color: #000;
+    font-family: Arial, Tahoma, Verdana;
     font-size: 0.9em;
     background: none;
     text-transform: uppercase;
@@ -118,10 +135,62 @@ input {
     transition: all 500ms;
 }
 
+#upload {
+    color: #fff;
+    font-family: Arial, Tahoma, Verdana;
+    font-size: 0.9em;
+    background: #fc4f59;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px 10px 5px 5px;
+    border: 1px solid #000;
+    margin: 0 10px 10px 0;
+    transition: all 500ms;
+}
+
+#upload:hover {
+    color: #fc4f59;
+    border: 1px solid #fc4f59;
+    background: #fff;
+}
+
+.name:hover {
+    color: #fff;
+    border: 1px solid #fc4f59;
+    background: #fc4f59;
+}
+
 .btn:hover {
     color: #fff;
     border: 1px solid #fc4f59;
     background: #fc4f59;
+}
+
+#containerModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    max-width: 70%;
+    max-height: 70%;
+    background-color: #fc4f59;
+}
+
+#imgmodal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+
+    border: solid 3px;
 }
 
 .btn.btn_highlight {
@@ -136,14 +205,4 @@ input {
     padding: 10px 15px 8px 15px;
     border: 1px solid #fc4f59;
     transition: all 500ms;
-}
-
-.btn.btn_highlight:hover {
-    color: #fc4f59;
-    background: none;
-}
-
-.btn_back {
-    display: inline !important;
-    margin: inherit !important;
 }

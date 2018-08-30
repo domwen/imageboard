@@ -10,24 +10,38 @@
     <div id="main">
         <form method="POST" class="form">
 
-            <h2>Upload Your File</h2>
-            <input v-model="form.title" type="text" class="name" name="title" placeholder="Title">
-            <input v-model="form.description" type="text"  class="name" name="description" placeholder="Description">
-            <input v-model="form.username" type="text"  class="name" name="username" placeholder="Username">
-            <input type="file" accept="image/*" class="btn">
-            <button v-on:click ="uploadFile" class="btn">Upload</button>
+            <h2> => {IMGBRD}</h2>
+            <input v-model="form.username" type="text"  class="name" name="username" placeholder="Username" required>
+            <input v-model="form.title" type="text" class="name" name="title" placeholder="Title" required>
+            <input v-model="form.description" type="text"  class="name" name="description" placeholder="Description*">
 
+            <input type="file" accept="image/*" class="btn">
+            <button v-on:click ="uploadFile" id="upload">Upload</button>
         </form>
 
         <div id="gridContainer">
             <div id="imgbox" v-if="images.length > 0" v-for="image in images">
-                <img class="img" v-bind:src="image.url">
+                <p class="imgTitle">{{image.title}}</p>
+                <img class="img" v-bind:src="image.url" @click="setCurrentImage(image.id)">
+                <p>{{image.description}}</p>
             </div>
         </div>
+        <image-modal v-if="show" :id="id" v-on:close="hide"></image-modal>
 
     </div>
 
 
+    <script id="image-modal" type="x-template">
+        <div id="containerModal">
+            <div id="imgModal">
+            <h3>{{info.title}}</h3>
+            <img class="modalImg" v-bind:src="info.url" @click="closePopup">
+            <p> {{info.name}} </p>
+            <p> {{info.description}}</p>
+
+            </div>
+        </div>
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>

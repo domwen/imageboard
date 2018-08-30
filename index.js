@@ -34,12 +34,12 @@ app.use(
 
 app.use(express.static('./public'));
 
-app.get('/images', (req, res) => {
+app.get('/images/', (req, res) => {
     var imageInfo = db
         .getImageData()
         .then(results => {
-            console.log('Results from getimages :', results);
             res.json(results.rows);
+            console.log('results.rows:', results.rows);
         })
         .catch(err => {
             console.log('There was an error: ', err);
@@ -48,6 +48,14 @@ app.get('/images', (req, res) => {
                 error: true
             });
         });
+});
+
+app.get('/images/:image_id', (req, res) => {
+    var imageId = req.params.image_id;
+    db.getImagebyId(imageId).then(result => {
+        console.log('getImagebyId result.rows: ', result.rows);
+        res.json(result.rows);
+    });
 });
 
 app.post('/upload', uploader.single('file'), s3.upload, (req, res) => {
@@ -60,12 +68,15 @@ app.post('/upload', uploader.single('file'), s3.upload, (req, res) => {
             req.body.description,
             req.body.username
         )
-            .then(() => {
+            .then(({ rows }) => {
+                console.log('Image succesfully saved in DB', rows);
                 res.json({
-                    success: true
+                    success: true,
+                    image: rows[0]
                 });
             })
             .catch(err => {
+                console.log('Error in upload catch', err);
                 res.status(500).json({
                     success: false
                 });
