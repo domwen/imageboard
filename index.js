@@ -32,6 +32,7 @@ app.use(
     })
 );
 
+app.use(bp.json());
 app.use(express.static('./public'));
 
 app.get('/images/', (req, res) => {
@@ -50,12 +51,52 @@ app.get('/images/', (req, res) => {
         });
 });
 
+app.get('/getMoreImages/:idOfLastImg', (req, res) => {
+    console.log('idoflastimg ', req.params.idOfLastImg);
+
+    db.getMoreImages(req.params.idOfLastImg)
+        .then(results => {
+            console.log('results.rows: ', results.rows);
+            res.json(results.rows);
+        })
+        .catch(err => {
+            console.log('error: ', err);
+        });
+});
+
 app.get('/images/:image_id', (req, res) => {
     var imageId = req.params.image_id;
-    db.getImagebyId(imageId).then(result => {
-        console.log('getImagebyId result.rows: ', result.rows);
-        res.json(result.rows);
+    db.getImagebyId(imageId).then(image => {
+        // console.log('getImagebyId result.rows: ', result.rows);
+        var imageInfo = image.rows;
+        db.selectComments(imageId).then(comments => {
+            // console.log('Result from selectComments :', comments);
+            var totalInfo = imageInfo.concat(comments.rows);
+            // console.log('var totalInfo :', totalInfo);
+            res.json({
+                imageInfo,
+                comments: comments.rows
+            });
+            console.log('TOTAL INFO: ', totalInfo);
+        });
     });
+});
+
+app.post('/comments/:image_id', (req, res) => {
+    console.log('INSIDE APP POST COMMENTS :', req.body.comment);
+    console.log('req.params.id: ', req.params.image_id);
+
+    db.insertComments(req.params.image_id, req.body.comment, req.body.username)
+        .then(results => {
+            console.log('SUCCESSFULLY SAVED COMMENTS TO DB');
+            res.json(results.rows);
+        })
+        .catch(err => {
+            console.log('Error in writeFileto: ', err);
+            res.status(500).json({
+                success: false
+            });
+        });
 });
 
 app.post('/upload', uploader.single('file'), s3.upload, (req, res) => {

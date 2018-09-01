@@ -46,22 +46,22 @@ h2 {
 }
 
 h3 {
-    font-size: 1.4em;
-    font-weight: bold;
-    line-height: 1.2em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-h4 {
     display: table;
-    color: #fff;
+    color: #000;
     font-size: 1.8em;
     font-weight: bold;
     text-transform: uppercase;
     border-bottom: 10px solid #fff;
     margin-bottom: 15px;
     padding-bottom: 10px;
+}
+
+h4 {
+    font-size: 1.4em;
+    font-weight: bold;
+    line-height: 1.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }
 
 #main {
@@ -74,13 +74,18 @@ h4 {
 }
 
 #gridContainer {
-    align-items: center;
-    margin-top: 50px;
     display: grid;
+    align-items: center;
+    justify-content: stretch;
+    margin-top: 25px;
+    margin-bottom: 70px;
     grid-template-columns: 225px 225px 225px 225px;
-    grid-template-rows: 225px 225px;
-    grid-column-gap: 25px;
-    grid-row-gap: 50px;
+    grid-column-gap: 50px;
+    grid-row-gap: 20px;
+    padding-top: 31px;
+    padding-bottom: 30px;
+    padding-left: 28px;
+    padding-right: 28px;
 }
 
 #imgbox {
@@ -97,15 +102,16 @@ h4 {
     border: 1px solid;
     object-fit: cover;
     overflow: hidden;
+    cursor: pointer;
+
+    -webkit-filter: contrast(3) saturate(4) sepia(0.6) opacity(6);
+    filter: contrast(1.5) saturate(3) sepia(0.6) opacity(6);
 }
 
 .img:hover {
     border-color: #fc4f59;
-}
-
-.modalImg {
-    max-width: 400px;
-    border: 1px solid;
+    filter: none;
+    -webkit-filter: none;
 }
 
 .imgTitle {
@@ -129,13 +135,13 @@ input {
     background: none;
     text-transform: uppercase;
     text-align: center;
-    padding: 5px 10px 5px 5px;
+    padding: 5px 5px 5px 5px;
     border: 1px solid #000;
     margin: 0 10px 10px 0;
     transition: all 500ms;
 }
 
-#upload {
+.upload {
     color: #fff;
     font-family: Arial, Tahoma, Verdana;
     font-size: 0.9em;
@@ -148,7 +154,7 @@ input {
     transition: all 500ms;
 }
 
-#upload:hover {
+.upload:hover {
     color: #fc4f59;
     border: 1px solid #fc4f59;
     background: #fff;
@@ -166,43 +172,106 @@ input {
     background: #fc4f59;
 }
 
+#closeModal {
+    cursor: pointer;
+}
+#commentsContainer {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
 #containerModal {
-    position: absolute;
+    max-height: calc(100% - 150px);
+    width: calc(100% - 300px);
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    height: 500px;
-    max-width: 70%;
-    max-height: 70%;
-    background-color: #fc4f59;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-around;
+    padding: 20px;
+    border: #fc4f59 solid 1px;
+    background-color: #fff;
 }
 
-#imgmodal {
+#commentBox {
+    flex: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-width: 480px;
+    border: 1px solid #000;
+}
+
+#commentBox .p1 {
+    font-style: italic;
+}
+
+#commentBox .p2 {
+    font-weight: bold;
+}
+
+#commentBox .p3 {
+    font-weight: normal;
+}
+
+.form {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center; */
+}
+
+#imgModal {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 400px;
-    height: 400px;
 
-    border: solid 3px;
+    /* width: 400px;
+    height: 400px; */
 }
 
-.btn.btn_highlight {
-    float: none;
-    margin: auto;
-    display: table;
-    color: #fff;
-    font-size: 0.9em;
-    background: #fc4f59;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 10px 15px 8px 15px;
-    border: 1px solid #fc4f59;
-    transition: all 500ms;
+#imgModal img {
+    border: 1px solid;
+    min-width: 200px;
+    max-width: 400px;
+    max-height: 400px;
+    object-fit: cover;
+    cursor: pointer;
+    #-webkit-filter: contrast(3) saturate(4) sepia(0.6) opacity(6);
+    filter: contrast(1.5) saturate(3) sepia(0.6) opacity(6);
+}
+
+#imgModal img:hover {
+    /* cursor: pointer; */
+    filter: none;
+    border-color: #000;
+}
+
+@media screen and (min-width: 760px) and (max-width: 900px) {
+    #gridContainer {
+        grid-template-columns: 225px 225px 225px;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 760px) {
+    #gridContainer {
+        grid-template-columns: 225px 225px;
+    }
+    #containerModal {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #gridContainer {
+        grid-template-columns: 225px;
+    }
+    #containerModal {
+        flex-direction: column;
+    }
+    #imgModal img {
+        min-width: none;
+    }
 }

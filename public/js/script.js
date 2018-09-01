@@ -4,7 +4,13 @@
         template: '#image-modal',
         data: function() {
             return {
-                info: []
+                info: [],
+                comments: [],
+                commentTimestamp: '',
+                form: {
+                    comment: '',
+                    username: ''
+                }
             };
         },
 
@@ -12,9 +18,17 @@
             var app = this;
             console.log('this id:', this.id);
             axios.get('/images/' + this.id).then(response => {
-                console.log('response.data[0] :', response.data[0]);
-                app.info = response.data[0];
-                console.log('info.url :', app.info.url);
+                console.log(
+                    'Response from GET images/imageid',
+                    response.data[0]
+                );
+                app.info = response.data.imageInfo[0];
+                app.comments = response.data.comments.concat(response.data);
+                console.log('AXIOS GET IMAGES/IMAGEID app.info :', app.info);
+                console.log(
+                    'AXIOS GET IMAGES/IMAGEID app.comments :',
+                    app.comments
+                );
                 if (app.info.description == null) {
                     app.info.description = 'No description available';
                 }
@@ -24,9 +38,28 @@
         methods: {
             closePopup: function() {
                 this.$emit('close');
+            },
+
+            addComments: function(event) {
+                event.preventDefault();
+                var app = this; // Why do I have to do this here?
+                var commentInfo = {
+                    image_id: this.id,
+                    comment: this.form.comment,
+                    username: this.form.username
+                };
+                console.log('Insider addComments: ', commentInfo);
+
+                axios.post('/comments/' + this.id, commentInfo).then(res => {
+                    console.log('resp in POST / upload: ', res.data[0]);
+                    app.comments.unshift(res.data[0]);
+                    app.form.comment = '';
+                });
             }
         } // end of methods
     }); // end of component
+
+    // VUE INSTANCE STARTS HERE //
 
     var app = new Vue({
         el: '#main',
@@ -34,15 +67,18 @@
             images: [],
             id: '',
             show: '',
+            noMorePics: false,
             form: {
                 title: '',
                 username: '',
                 description: ''
-            }
+            },
+            filename: ''
         },
         mounted: function() {
             axios.get('/images/').then(function(results) {
                 app.images = results.data;
+                console.log('app.images :', app.images);
             });
         },
         methods: {
@@ -68,6 +104,9 @@
                         res.data.image
                     );
                 });
+
+                app.form.title = '';
+                app.form.description = '';
             }, // end of uploadFile
 
             hide: function() {
@@ -80,6 +119,22 @@
                 this.show = true; // WHAT DOES THIS MEAN?
                 console.log('Our Id is here: ', image_id);
                 console.log('this.show :', this.show);
+            },
+
+            loadMore: function() {
+                if (this.noMorePics) {
+                    return;
+                }
+                var app = this;
+                var idOfLastImg = this.images[this.images.length - 1].id;
+
+                axios.get('/getMoreImages/' + idOfLastImg).then(res => {
+                    if (res.data.length < 12) {
+                        app.noMorePics = true;
+                    }
+                    console.log('res: ', res);
+                    app.images = app.images.concat(res.data);
+                });
             }
         }
     }); // close vue

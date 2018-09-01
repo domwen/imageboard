@@ -2,7 +2,9 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/styles.css" media="all">
-        <title>Imageboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Imageboard</title>
 </head>
 <body>
 
@@ -10,14 +12,16 @@
     <div id="main">
         <form method="POST" class="form">
 
-            <h2> => {IMGBRD}</h2>
-            <input v-model="form.username" type="text"  class="name" name="username" placeholder="Username" required>
-            <input v-model="form.title" type="text" class="name" name="title" placeholder="Title" required>
-            <input v-model="form.description" type="text"  class="name" name="description" placeholder="Description*">
-
+            <h2> (IMG) => {BRD}</h2>
             <input type="file" accept="image/*" class="btn">
-            <button v-on:click ="uploadFile" id="upload">Upload</button>
+            <input v-model="form.title" type="text" class="name" name="title" placeholder="Title*" required>
+            <input v-model="form.username" type="text"  class="name" name="username" placeholder="Username*" required>
+            <input v-model="form.description" type="text"  class="name" name="description" placeholder="Description">
+
+            <button v-on:click ="uploadFile" class="upload">Upload</button><br>
+            * required
         </form>
+
 
         <div id="gridContainer">
             <div id="imgbox" v-if="images.length > 0" v-for="image in images">
@@ -28,18 +32,37 @@
         </div>
         <image-modal v-if="show" :id="id" v-on:close="hide"></image-modal>
 
+        <div id="more-button">
+                <button class="btn" @click="loadMore" v-if="!noMorePics">Load More</button>
+            </div>
+
     </div>
 
 
     <script id="image-modal" type="x-template">
         <div id="containerModal">
             <div id="imgModal">
-            <h3>{{info.title}}</h3>
-            <img class="modalImg" v-bind:src="info.url" @click="closePopup">
-            <p> {{info.name}} </p>
-            <p> {{info.description}}</p>
-
+                <h3>{{info.title}}</h3>
+                <img v-bind:src="info.url" @click="closePopup">
+                <p> {{info.name}} </p>
+                <p> {{info.description}}</p>
             </div>
+            <div id="commentsContainer">
+                <div><h4>Insert comments below </h4>
+                </div>
+                    <form>
+                        <input v-model ="form.comment"  type="text" class="name" name="comment" placeholder="Comment">
+                        <input v-model="form.username" type ="text" name ="username" placeholder="Username" class="name" >
+                        <button class="upload"v-on:click="addComments"> Submit </button>
+                    </form>
+                    <div id="commentBox">
+                        <div v-if="comments.length > 1" v-for="comm in comments">
+                        <p class="p2">{{comm.username}} <span class="p3"> {{comm.created_at}}</span></p>
+                        <p class="p1">{{comm.comment}}</p>
+                        </div>
+                    </div>
+            </div>
+            <div id="closeModal" @click="closePopup"><h4>X</h4></div>
         </div>
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
